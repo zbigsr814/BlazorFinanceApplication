@@ -1,0 +1,67 @@
+﻿@page "/earnings"
+@using FinanceApp_v2.Client.Components;
+@using System.Globalization;
+@inject HttpClient Http;
+
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card">
+			<div class="card-header">
+				Earnings
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thread>
+						<tr>
+							<th>Date</th>
+							<th>Category</th>
+							<th>Subject</th>
+							<th>Amount</th>
+						</tr>
+					</thread>
+					<tbody>
+						@if (earnings == null)
+						{
+							<tr><td><em>Loading...</em></td></tr>
+						}
+						else
+						{
+							@foreach (var earning in earnings)
+							{
+								<tr>
+									<td>@earning.Date.ToShortDateString()</td>
+									<td>@earning.Category</td>
+									<td>@earning.Subject</td>
+									<td>@earning.Amount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))</td>
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<EarningForm OnSubmitCallback="@Refresh"></EarningForm>
+	</div>
+</div>
+
+@code {
+	private Earning[] earnings;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await LoadData();
+	}
+
+	private async Task LoadData()
+	{
+		earnings = await Http.GetFromJsonAsync<Earning[]>("api/earnings");
+		StateHasChanged();
+	}
+
+	public async Task Refresh()
+	{
+		await LoadData();
+	}
+}
