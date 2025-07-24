@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp_v2.Server", "FinanceApp_v2\Server\FinanceApp_v2.Server.csproj", "{CDE6AD7B-E398-4D41-ABF7-0BAD97150C44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceApp_v2.Server", "FinanceApp_v2\Server\FinanceApp_v2.Server.csproj", "{CDE6AD7B-E398-4D41-ABF7-0BAD97150C44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp_v2.Client", "FinanceApp_v2\Client\FinanceApp_v2.Client.csproj", "{2DEEDBCC-C157-4EB8-8775-61B461373A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceApp_v2.Client", "FinanceApp_v2\Client\FinanceApp_v2.Client.csproj", "{2DEEDBCC-C157-4EB8-8775-61B461373A61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceApp_v2.Shared", "FinanceApp_v2\Shared\FinanceApp_v2.Shared.csproj", "{F69E8628-EE43-4779-8311-604D10DA3969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceApp_v2.Shared", "FinanceApp_v2\Shared\FinanceApp_v2.Shared.csproj", "{F69E8628-EE43-4779-8311-604D10DA3969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

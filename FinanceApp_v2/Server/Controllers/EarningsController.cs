@@ -27,5 +27,13 @@ namespace FinanceApp_v2.Controllers
 		{
 			_repositoryEarning.Add(earning);
 		}
+
+		[HttpDelete("{id?}")]
+		public void Delete(Guid id)
+		{
+			var entity = _repositoryEarning.GetAll()
+				.Single(e => e.Id == id);
+			_repositoryEarning.Remove(entity);
+		}
     }
 }

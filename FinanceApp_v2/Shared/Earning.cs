@@ -6,7 +6,7 @@ namespace FinanceApp_v2
 	{
         public Earning()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
 		}
 
         public Guid Id { get; set; }

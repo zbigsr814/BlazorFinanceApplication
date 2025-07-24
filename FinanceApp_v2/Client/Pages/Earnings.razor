@@ -17,6 +17,7 @@
 							<th>Category</th>
 							<th>Subject</th>
 							<th>Amount</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thread>
 					<tbody>
@@ -33,6 +34,7 @@
 									<td>@earning.Category</td>
 									<td>@earning.Subject</td>
 									<td>@earning.Amount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))</td>
+									<td><button type="button" class="btn btn-danger btn-sm" @onclick="() => OpenDeleteDialog(earning)">Delete</button></td>
 								</tr>
 							}
 						}
@@ -45,9 +47,37 @@
 		<EarningForm OnSubmitCallback="@Refresh"></EarningForm>
 	</div>
 </div>
+<div>&nbsp</div>
+@if (DeleteDialogOpen)
+{
+	<ModalDialog Title="Delete item." Text="Are you sure?" OnClose=@OnDeleteDialogClose DialogType="ModalDialog.ModalDialogType.DeleteCancel"></ModalDialog>
+}
 
 @code {
 	private Earning[] earnings;
+	private Earning _earningToDelete;
+
+	public bool DeleteDialogOpen { get; set; }
+
+	public void OpenDeleteDialog(Earning earning)
+	{
+		DeleteDialogOpen = true;
+		_earningToDelete = earning;
+		StateHasChanged();
+	}
+
+	public async Task OnDeleteDialogClose(bool accepted)
+	{
+		if (accepted)
+		{
+			await Http.DeleteAsync($"api/earnings/{_earningToDelete.Id}");
+			await LoadData();
+			_earningToDelete = null;
+		}
+		
+		DeleteDialogOpen = false;
+		StateHasChanged();
+	}
 
 	protected override async Task OnInitializedAsync()
 	{
